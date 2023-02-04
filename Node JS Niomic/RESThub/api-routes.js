@@ -1,31 +1,31 @@
-// Import express routes
+// Api-Routes.js
 
+// Import express routes
 const express = require("express");
 const router = express.Router();
 
+// Set Default api respond
 router.get('/',(req,res)=>{
     res.json({
         status : "API its working",
-        message : "Welcome to resthub Backend App",
+        message : "Welcome to resthub Backend Apps",
     })
 });
 
-router.post('/',(req,res)=>{
-    res.send('Request Read Masuk');
-});
+// Import contact controller
+const contactController = require("./contactController");
 
-router.put('/',(req,res)=>{
-    res.send(
-        "Request Put Masuk"
-    );
-});
+//Contact Routes
+router.route('/contacts')
+.get(contactController.index)
+.post(contactController.new)
 
-router.delete('/',(req,res)=>{
-    res.send(
-        "Request Delete Masuk"
-    );
-});
-
+router.route("contacts/:contact_id")
+.get(contactController.view)
+.patch(contactController.update)
+.put(contactController.update)
+.delete(contactController.delete)
+// Export API routes
 module.exports = router;
 
 
