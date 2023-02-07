@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const app = express();
 // Setting port
 // import body-parser
-
+const port = 8000;
 // Import module api route
 const apiRouter = require("./api-routes");
 const bodyParser = require("express");
@@ -18,16 +18,21 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 //Connect to mongodb
-mongoose.connect('mongodb://localhost/resthub');
+mongoose.connect('mongodb://localhost/resthub').then(() => console.log('Connected!'));;
 const db = mongoose.connection;
-const port = 8000;
-// api route ke url /api
-app.use("/api",apiRouter);
+
+db.on('error', console.error.bind(console, 'Connection error'));
+      db.once('open', function(){
+        console.log('db connection open');
+      });
 
 // Setup default url di root
 app.get('/',(req,res)=>{
     res.send('Halooo,selamat anda telah berhasil membuat webserver dengan express dan nodemon');
 });
+
+// api route ke url /api
+app.use("/api",apiRouter);
 
 //lainch app with info at console log
 app.listen(port,()=> {

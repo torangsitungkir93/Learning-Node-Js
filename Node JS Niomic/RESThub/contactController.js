@@ -91,7 +91,7 @@ exports.delete = function (req,res) {
             res.send(err)
         }
         res.json({
-            Status : "Success",
+            status : "Success",
             message : "delete Contact Succes"
         })
     })

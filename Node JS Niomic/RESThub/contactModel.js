@@ -12,7 +12,7 @@ const ContactSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    email : String,
+    gender : String,
     phone : String,
     create_date : {
         type : Date,
@@ -23,5 +23,5 @@ const ContactSchema = mongoose.Schema({
 /// Export Contact Model
 const Contact = module.exports = mongoose.model('contact',ContactSchema);
 module.exports.get = function (callback,limit){
-    Contact.find(callback).limit(limit)
+    Contact.find(callback).limit(limit);
 }

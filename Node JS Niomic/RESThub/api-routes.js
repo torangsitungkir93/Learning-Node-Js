@@ -9,7 +9,7 @@ router.get('/',(req,res)=>{
     res.json({
         status : "API its working",
         message : "Welcome to resthub Backend Apps",
-    })
+    });
 });
 
 // Import contact controller
