@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 //Connect to mongodb
-mongoose.connect('mongodb://localhost/resthub').then(() => console.log('Connected!'));;
+mongoose.connect('mongodb://127.0.0.1:27017/resthub').then(() => console.log('Connected!'));;
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Connection error'));
