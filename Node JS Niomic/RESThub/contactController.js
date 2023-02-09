@@ -2,7 +2,7 @@
 Contact = require("./contactModel");
 // Handle index action
 exports.index = function (req, res) {
-    Contact.get(function (err, contacts) {
+    Contact.get(function (err, contact) {
         if (err) {
             res.json({
                 status: "error",
@@ -12,7 +12,7 @@ exports.index = function (req, res) {
         res.json({
             status: "success",
             message: "contact retrived successfully",
-            data: contacts
+            data: contact
         })
     });
 };
@@ -24,18 +24,21 @@ exports.new = function (req, res) {
     contact.gender = req.body.gender;
     contact.email = req.body.email;
     contact.phone = req.body.phone;
-    contact.save(function (err) {
-        if (err) {
+    console.log(`Cek 1 : ${req.body.name}`);
+    contact
+        .save()
+        .then((data)=> {
             res.json({
-                status: "error",
-                message: err,
+                Status : "Success",
+                message : "New Contact Created",
+                contact : data
             })
-        }
-        res.json({
-            message: "new contact created",
-            data: contact
         })
-    })
+        .catch((err) => {
+            res.status(500).send({
+                message : err.message || "Internal server error"
+            })
+        });
 }
 
 //handle view contact info
