@@ -1,24 +1,17 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const {loadContact,findContact} = require('./utils/contact');
 
 const app = express()
 const port = 3000
 
 // Gunakan EJS
 app.set('view engine','ejs');
-
-//Third-party Middleware
 app.use(expressLayouts);
-
 
 // Built-in middleware
 app.use(express.static('public'));
 
-// Application Level Middleware
-app.use((req,res,next)=>{
-    console.log('Time : ',Date.now());
-    next();
-});
 
 app.get('/', (req, res) => {
 //   res.send('Hello World!')
@@ -59,15 +52,26 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/contact', (req, res) => {
+    const contacts = loadContact();
+    // Untuk meload contact json yang sudah dibuat sebelumnya
+
     res.render('contact',{
         layout : 'layouts/main-layout',
-        title:'Halaman Contact'});
+        title:'Halaman Contact',
+        contacts,
+    });
+})
+app.get('/contact/:nama', (req, res) => {
+    const contact = findContact(req.params.nama);
+    // Untuk meload contact json yang sudah dibuat sebelumnya
+
+    res.render('detail',{
+        layout : 'layouts/main-layout',
+        title:'Halaman Detail Contact',
+        contact,
+    });
 })
 
-app.get('/product/:id',(req,res)=>{
-    // res.send(`Product ID : ${req.params.id} <br> Category ID : ${req.params.idCategory}`);
-    res.send(`Product ID : ${req.params.id} <br> Category : ${req.query.category}`);
-});
 
 app.use('/',(req,res)=>{
     res.status(404);
