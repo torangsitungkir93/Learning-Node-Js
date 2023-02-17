@@ -28,7 +28,7 @@ app.use(session({
     resave : true,
     saveUninitialized:true,
 }));
-app.use(flash);
+app.use(flash());
 
 app.get('/', (req, res) => {
 //   res.send('Hello World!')
@@ -111,7 +111,7 @@ app.post('/contact',[
     }else{
         addContact((req.body));
         // kirimkan pesan flash
-        req.flash('msg','Data contact berhasil ditambahkan!');
+        req.flash('msg','Data kontak berhasil ditambahkan!');
         res.redirect('/contact');  
     }
 });
