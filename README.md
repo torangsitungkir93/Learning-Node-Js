@@ -1,4 +1,4 @@
-# Project Title
+# Learning-Node-Js
 
 A nice project with a nice description
 
@@ -45,7 +45,7 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ## Install
 
-    $ git clone https://github.com/torangsitungkir93/Learning-Node-Js
+    $ git clone https://github.com/torangsitungkir93/Learning-Node-Js/tree/main/Node%20JS%20Niomic or https://github.com/torangsitungkir93/Learning-Node-Js/tree/main/Node%20JS%20Unpas
     $ cd PROJECT_TITLE
     $ yarn install
 
