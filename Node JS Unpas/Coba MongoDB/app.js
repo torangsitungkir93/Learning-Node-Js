@@ -13,4 +13,6 @@ client.connect((error,client)=>{
     if(error){
         return console.log('koneksi gagal');
     }
+
+    console.log('Koneksi berhasil');
 });
