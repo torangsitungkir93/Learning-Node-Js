@@ -14,5 +14,8 @@ client.connect((error,client)=>{
         return console.log('koneksi gagal');
     }
 
-    console.log('Koneksi berhasil');
+    // Menambahkan 1 data ke collection mahasiswa
+     
+
+
 });
